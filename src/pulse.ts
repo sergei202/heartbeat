@@ -1,7 +1,7 @@
 import * as os			from 'os';
 import * as diskUsage	from 'diskusage';
 
-export interface Stats {
+export interface Pulse {
 	hostname:string,
 	date:Date,
 	ping?:number				// ms round-trip time
@@ -20,10 +20,10 @@ export interface Stats {
 	}
 };
 
-export async function getStats() {
+export async function getPulse():Promise<Pulse> {
 	const byteToGigaByte = 1/(1024*1024*1024);
 	const usage = await diskUsage.check('/');
-	const stats = {
+	const pulse = {
 		hostname: os.hostname(),
 		uptime: {
 			process: Math.round(process.uptime()),
@@ -38,7 +38,7 @@ export async function getStats() {
 			free: usage.available*byteToGigaByte,
 			total: usage.total*byteToGigaByte
 		},
-		time: new Date()
+		date: new Date()
 	};
-	return stats;
+	return pulse;
 }

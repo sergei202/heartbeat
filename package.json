@@ -1,8 +1,8 @@
 {
 	"name": "heartbeat",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "",
-	"main": "heartbeat.js",
+	"main": "dist/heartbeat.js",
 	"scripts": {
 		"start": "nodemon --exec ts-node -- ./src/heartbeat.ts",
 		"build": "tsc",
